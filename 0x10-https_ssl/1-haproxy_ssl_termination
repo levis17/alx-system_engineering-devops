@@ -40,7 +40,7 @@ frontend  greatkalaso-frontend-http
         default_backend greatkalaso-backend
 
 frontend greatkalaso-frontend-https
-	bind *:443 ssl crt /etc/haproxy/certs/www.ehoneah.tech.pem
+	bind *:443 ssl crt /etc/haproxy/certs/www.greatkalaso.tech.pem
 	http-request set-header X-Forwarded-Proto https
 	default_backend greatkalaso-backend
 
