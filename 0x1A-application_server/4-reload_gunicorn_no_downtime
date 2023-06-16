@@ -1,4 +1,25 @@
-#!/usr/bin/env bash
-# Gracefully reloads Gunicorn.
+#!/bin/bash
 
-ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+# Find the process ID of the Gunicorn master
+
+master_pid=$(pgrep gunicorn)
+
+# Send a SIGHUP signal to the master process
+
+kill -HUP $master_pid
+
+# Wait for the master process to restart the workers
+
+sleep 2
+
+# Check if the master process is still running
+
+if ps -p $master_pid > /dev/null; then
+
+    echo "Gunicorn reloaded successfully."
+
+else
+
+    echo "Failed to reload Gunicorn."
+
+fi
