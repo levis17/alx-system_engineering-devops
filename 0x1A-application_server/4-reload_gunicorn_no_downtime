@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
 # Gracefully reloads Gunicorn.
 
-pgrep gunicorn | xargs kill -HUP
+if pgrep gunicorn >/dev/null; then
+    pgrep gunicorn | xargs kill -HUP
+    sleep 2
+
+    if pgrep gunicorn >/dev/null; then
+        echo "OK: Gunicorn reloaded successfully."
+    else
+        echo "NOK: Failed to reload Gunicorn."
+    fi
+else
+    echo "NOK: Gunicorn process not found."
+fi
