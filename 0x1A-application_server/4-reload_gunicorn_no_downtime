@@ -8,8 +8,8 @@ if pgrep gunicorn >/dev/null; then
     if pgrep gunicorn >/dev/null; then
         echo "OK: Gunicorn reloaded successfully."
     else
-        echo "NOK: Failed to reload Gunicorn."
+        echo "NOk: Failed to reload Gunicorn."
     fi
 else
-    echo "NOK: Gunicorn process not found."
+    echo "NOk: Gunicorn process not found."
 fi
